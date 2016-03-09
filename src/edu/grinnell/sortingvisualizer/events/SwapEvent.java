@@ -15,7 +15,6 @@ public class SwapEvent<T> implements SortEvent<T> {
 	}
 
 	public boolean isEmphasized() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }
