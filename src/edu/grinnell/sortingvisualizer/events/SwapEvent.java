@@ -4,7 +4,14 @@ import java.util.List;
 
 public class SwapEvent<T> implements SortEvent<T> {
 	
-	public void apply(T arr) {
+	int fstIndex;
+	int sndIndex;
+	
+	public SwapEvent(int index1, int index2) {
+		fstIndex = index1;
+		sndIndex = index2;
+	}
+	void apply(T arr) {
 		// TODO Auto-generated method stub
 		
 	}
