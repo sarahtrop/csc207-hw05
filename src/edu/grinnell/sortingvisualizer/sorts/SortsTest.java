@@ -2,93 +2,86 @@ package edu.grinnell.sortingvisualizer.sorts;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
 import java.util.Arrays;
 
+import org.junit.Test;
+
 public class SortsTest {
-
-	@Test
-	public void selectionSortTest() {
-		// Declare arrays
-		Integer[] arr = { 1, 10, 9, 8, 4, 3, 7 };
-		Integer[] arrSorted = { 1, 3, 4, 7, 8, 9, 10 };
-		String[] arr2 = { "d", "a", "f", "z" };
-		String[] arr2Sorted = { "a", "d", "f", "z" };
-		
-		// Sort arrays
-		Sorts.selectionSort(arr);
-		Sorts.selectionSort(arr2);
-
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arrSorted, arr);
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arr2Sorted, arr2);
-	}
 	
 	@Test
 	public void insertionSortTest() {
-		// Declare arrays
-		Integer[] arr = { 1, 10, 9, 8, 4, 3, 7 };
-		Integer[] arrSorted = { 1, 3, 4, 7, 8, 9, 10 };
-		String[] arr2 = { "d", "a", "f", "z" };
-		String[] arr2Sorted = { "a", "d", "f", "z" };
+		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
+		Double[] doubleArray = { 100.0, -62.345, -8.97, 567.3, 2.1 };
+		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog" };
+		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
 		
-		// Sort arrays
-		Sorts.insertionSort(arr);
-		Sorts.insertionSort(arr2);
+		Sorts.insertionSort(intArray);
+		Sorts.insertionSort(doubleArray);
+		Sorts.insertionSort(stringArray);
+		Sorts.insertionSort(characterArray);
 		
-		// Check arrays
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arrSorted, arr);
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arr2Sorted, arr2);
+		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
+		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
+		assertEquals("String array: { dog, zebra, lion, rabbit, turtle, banana, armadillo, hedgehog }", 
+					"[armadillo, banana, dog, hedgehog, lion, rabbit, turtle, zebra]", Arrays.toString(stringArray));
+		assertEquals("Character array: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray));
+	}
+	
+	@Test
+	public void selectionSortTest() {
+		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
+		Double[] doubleArray = { 100.0, -62.345, -8.97, 567.3, 2.1 };
+		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog" };
+		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
+		
+		Sorts.selectionSort(intArray);
+		Sorts.selectionSort(doubleArray);
+		Sorts.selectionSort(stringArray);
+		Sorts.selectionSort(characterArray);
+		
+		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
+		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
+		assertEquals("String array: { dog, zebra, lion, rabbit, turtle, banana, armadillo, hedgehog }", 
+					"[armadillo, banana, dog, hedgehog, lion, rabbit, turtle, zebra]", Arrays.toString(stringArray));
+		assertEquals("Character array: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray));
 	}
 	
 	@Test
 	public void bubbleSortTest() {
-		// Declare arrays
-		Integer[] arr = { 1, 10, 9, 8, 4, 3, 7 };
-		Integer[] arrSorted = { 1, 3, 4, 7, 8, 9, 10 };
-		String[] arr2 = { "d", "a", "f", "z" };
-		String[] arr2Sorted = { "a", "d", "f", "z" };
+		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
+		Double[] doubleArray = { 100.0, -62.345, -8.97, 567.3, 2.1 };
+		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog" };
+		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
 		
-		// Sort arrays
-		Sorts.bubbleSort(arr);
-		Sorts.bubbleSort(arr2);
+		Sorts.bubbleSort(intArray);
+		Sorts.bubbleSort(doubleArray);
+		Sorts.bubbleSort(stringArray);
+		Sorts.bubbleSort(characterArray);
 		
-		// Check arrays
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arrSorted, arr);
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arr2Sorted, arr2);
+		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
+		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
+		assertEquals("String array: { dog, zebra, lion, rabbit, turtle, banana, armadillo, hedgehog }", 
+					"[armadillo, banana, dog, hedgehog, lion, rabbit, turtle, zebra]", Arrays.toString(stringArray));
+		assertEquals("Character array: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray));
 	}
 	
 	@Test
 	public void mergeSortTest() {
-		// Declare arrays
-		Integer[] arr = { 1, 10, 9, 8, 4, 3, 7 };
-		Integer[] arrSorted = { 1, 3, 4, 7, 8, 9, 10 };
-		String[] arr2 = { "d", "a", "f", "z" };
-		String[] arr2Sorted = { "a", "d", "f", "z" };
+		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
+		Double[] doubleArray = { 100.0, -62.345, -8.97, 567.3, 2.1 };
+		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog" };
+		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
 		
-		// Sort arrays
-		Sorts.selectionSort(arr);
-		Sorts.selectionSort(arr2);
+		Sorts.mergeSort(intArray);
+		Sorts.mergeSort(doubleArray);
+		Sorts.mergeSort(stringArray);
+		Sorts.mergeSort(characterArray);
 		
-		// Check arrays
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arrSorted, arr);
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arr2Sorted, arr2);
-	}
-	
-	@Test
-	public void quickSortTest() {
-		// Declare arrays
-		Integer[] arr = { 1, 10, 9, 8, 4, 3, 7 };
-		Integer[] arrSorted = { 1, 3, 4, 7, 8, 9, 10 };
-		String[] arr2 = { "d", "a", "f", "z" };
-		String[] arr2Sorted = { "a", "d", "f", "z" };
-		
-		// Sort arrays
-		Sorts.quickSort(arr);
-		Sorts.quickSort(arr2);
-		
-		// Check arrays
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arrSorted, arr);
-		assertEquals("Integer array: { 1, 10, 9, 8, 4, 3, 7 }", arr2Sorted, arr2);
+		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
+		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
+		assertEquals("String array: { dog, zebra, lion, rabbit, turtle, banana, armadillo, hedgehog }", 
+					"[armadillo, banana, dog, hedgehog, lion, rabbit, turtle, zebra]", Arrays.toString(stringArray));
+		assertEquals("Character array: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray));
 	}
 
 }
