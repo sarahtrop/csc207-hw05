@@ -1,9 +1,12 @@
 package edu.grinnell.sortingvisualizer.sorts;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
+import edu.grinnell.sortingvisualizer.events.CompareEvent;
 import edu.grinnell.sortingvisualizer.events.SortEvent;
+import edu.grinnell.sortingvisualizer.events.SwapEvent;
 
 public class Sorts {
 	
@@ -12,16 +15,22 @@ public class Sorts {
 	 * @param arr	an array
 	 * @author tropsara17, ehrhardh17
 	 */
-	public static <T extends Comparable<T>> void selectionSort(T[] arr) {
+	public static <T extends Comparable<T>> List<Integer> selectionSort(T[] arr) {
+		LinkedList<SortEvent<T>> events = new LinkedList<>();
 		for(int i = 0; i < arr.length; i++) {
 			int temp = i;
 			for (int j = i; j < arr.length; j++) {
 				if (arr[j].compareTo(arr[temp]) < 0) {
+					CompareEvent compared = new CompareEvent(i, j);
+					events.apply(compared);
 					temp = j;
+					SwapEvent swapped = new SwapEvent(i, j);
+					events.apply(swapped);
 				}
 			}
 			swap(arr, temp, i);
 		}	
+		return events.getAffectedIndices();
 	}
 	
 	/**
@@ -107,7 +116,7 @@ public class Sorts {
 	 * @author tropsara17, hudsonad17
 	 */
 	public static <T extends Comparable<T>>void eventSort(T[] arr, List<SortEvent<T>> events) {
-		
+
 	}
 	
 	/**
