@@ -1,17 +1,29 @@
 package edu.grinnell.sortingvisualizer.events;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class CopyEvent<T> implements SortEvent<T> {
 
-	public void apply(T arr) {
-		// TODO Auto-generated method stub
+	private int fstIndex;
+	private int sndIndex;
+	List<Integer> indices;
+	
+	public CopyEvent(int index1, int index2) {
+		fstIndex = index1;
+		sndIndex = index2;
+		indices = new LinkedList<>();
+	}
+	
+	public void apply(LinkedList<SortEvent<T>> arr) {
+		arr.add(new CopyEvent<>(fstIndex, sndIndex));
 		
+		if (!indices.contains(fstIndex)) { indices.add(fstIndex); }
+		if (!indices.contains(sndIndex)) { indices.add(sndIndex); }
 	}
 
 	public List<Integer> getAffectedIndices() {
-		// TODO Auto-generated method stub
-		return null;
+		return indices;
 	}
 
 	public boolean isEmphasized() {
