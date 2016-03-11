@@ -14,25 +14,19 @@ public class Sorts {
 	 * Method sorts an array in ascending order using the selection sort algorithm.
 	 * @param arr	an array
 	 * @author tropsara17, ehrhardh17
-	 *
-	public static <T extends Comparable<T>> List<Integer> selectionSort(T[] arr) {
-		LinkedList<SortEvent<T>> events = new LinkedList<>();
+	 */
+	public static <T extends Comparable<T>> void selectionSort(T[] arr) {
 		for(int i = 0; i < arr.length; i++) {
 			int temp = i;
 			for (int j = i; j < arr.length; j++) {
 				if (arr[j].compareTo(arr[temp]) < 0) {
-					CompareEvent compared = new CompareEvent(i, j);
-					events.apply(compared);
+					new CompareEvent<>(i, j);
 					temp = j;
-					SwapEvent swapped = new SwapEvent(i, j);
-					events.apply(swapped);
 				}
 			}
 			swap(arr, temp, i);
 		}	
-		return events.getAffectedIndices();
 	}
-	*/
 	
 	/**
 	 * Method sorts an array in ascending using the insertion sort algorithm.
@@ -43,6 +37,7 @@ public class Sorts {
 		for(int i = 1; i < arr.length; i++) {
 			for (int j = i; j > 0; j--) {
 				if (arr[j].compareTo(arr[j-1]) < 0) {
+					new CompareEvent<>(i, j);
 					swap(arr, j, i);
 				}
 			}
@@ -59,6 +54,7 @@ public class Sorts {
 			int temp = i;
 			for (int j = i; j >= 0; j--) {
 				if (arr[j].compareTo(arr[temp]) > 0) {
+					new CompareEvent<>(i, j);
 					temp = j;
 				}
 			}
@@ -140,6 +136,7 @@ public class Sorts {
 			for(i = g; i < arr.length; i++) {
 				T temp = arr[i];
 				for(j = i; j >= g && arr[j-g].compareTo(temp) > 0; j -= g) {
+					new CompareEvent<>(i, j);
 					arr[j] = arr[j-g];
 				}
 				arr[j] = temp;
@@ -154,10 +151,8 @@ public class Sorts {
 	 * @author tropsara17, hudsonad17
 	 */
 	public static <T extends Comparable<T>>void eventSort(T[] arr, List<SortEvent<T>> events) {
-		for (int i = 0; i < arr.length; i++) {
-		// check what kind of event it is
-		// apply the event to the array
-		events.apply(arr);
+		for(int i = 0; i < arr.length; i++) {
+			events.get(i).apply(arr);
 		}
 	}
 	
@@ -172,6 +167,7 @@ public class Sorts {
 		T temp = arr[j];
 		arr[j] = arr[i];
 		arr[i] = temp;
+		new SwapEvent<>(i, j);
 	}
 
 	public static void main(String[] args) {
