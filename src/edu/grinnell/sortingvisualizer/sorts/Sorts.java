@@ -154,7 +154,11 @@ public class Sorts {
 	 * @author tropsara17, hudsonad17
 	 */
 	public static <T extends Comparable<T>>void eventSort(T[] arr, List<SortEvent<T>> events) {
-
+		for (int i = 0; i < arr.length; i++) {
+		// check what kind of event it is
+		// apply the event to the array
+		events.apply(arr);
+		}
 	}
 	
 	/**
