@@ -14,7 +14,7 @@ public class Sorts {
 	 * Method sorts an array in ascending order using the selection sort algorithm.
 	 * @param arr	an array
 	 * @author tropsara17, ehrhardh17
-	 */
+	 *
 	public static <T extends Comparable<T>> List<Integer> selectionSort(T[] arr) {
 		LinkedList<SortEvent<T>> events = new LinkedList<>();
 		for(int i = 0; i < arr.length; i++) {
@@ -32,6 +32,7 @@ public class Sorts {
 		}	
 		return events.getAffectedIndices();
 	}
+	*/
 	
 	/**
 	 * Method sorts an array in ascending using the insertion sort algorithm.
@@ -71,7 +72,44 @@ public class Sorts {
 	 * @author tropsara17, ehrhardh17
 	 */
 	public static <T extends Comparable<T>> void mergeSort(T[] arr) {
+		arr = Arrays.copyOf(mergeSortHelper(arr, 0, arr.length), arr.length);
+	}
+	
+	public static <T extends Comparable<T>> T[] mergeSortHelper(T[] arr, int lo, int hi) {
+		int mid = arr.length / 2;
+		int leftSize = mid;
+		int rightSize = arr.length - mid;
+		T[] result = new T[arr.length];
 		
+		T[] left = mergeSortHelper(arr, lo, mid);
+		T[] right = mergeSortHelper(arr, mid, hi);
+		
+		int leftPos = 0;
+		int rightPos = 0;
+		int resultPos = 0;
+		
+		while(leftPos < leftSize || rightPos < rightSize) {
+			if (leftPos == leftSize) {
+				result[resultPos] = right[rightPos];
+				rightPos++;
+				resultPos++;
+			} else if (rightPos == rightSize) {
+				result[resultPos] = left[leftPos];
+				leftPos++;
+				resultPos++;
+			} else {
+				if (left[leftPos].compareTo(right[rightPos]) < 0) {
+					result[resultPos] = left[leftPos];
+					resultPos++;
+					leftPos++;
+				} else {
+					result[resultPos] = right[rightPos];
+					resultPos++;
+					rightPos++;
+				}
+			}
+		}
+		return result;
 	}
 	
 	/**

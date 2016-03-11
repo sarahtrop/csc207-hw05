@@ -5,25 +5,14 @@ import java.util.List;
 
 public class CopyEvent<T> implements SortEvent<T> {
 
-	private int fstIndex;
-	private int sndIndex;
-	List<Integer> indices;
-	
-	public CopyEvent(int index1, int index2) {
-		fstIndex = index1;
-		sndIndex = index2;
-		indices = new LinkedList<>();
-	}
-	
-	public void apply(LinkedList<SortEvent<T>> arr) {
-		arr.add(new CopyEvent<>(fstIndex, sndIndex));
+	public void apply(T[] arr) {
+		// TODO Auto-generated method stub
 		
-		if (!indices.contains(fstIndex)) { indices.add(fstIndex); }
-		if (!indices.contains(sndIndex)) { indices.add(sndIndex); }
 	}
 
 	public List<Integer> getAffectedIndices() {
-		return indices;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public boolean isEmphasized() {

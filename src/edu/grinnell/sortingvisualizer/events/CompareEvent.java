@@ -1,6 +1,5 @@
 package edu.grinnell.sortingvisualizer.events;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class CompareEvent<T> implements SortEvent<T> {
@@ -12,14 +11,16 @@ public class CompareEvent<T> implements SortEvent<T> {
 	public CompareEvent(int index1, int index2) {
 		fstIndex = index1;
 		sndIndex = index2;
-		indices = new LinkedList<>();
+		// somehow have to mark that these go together, and are a compare event
+		indices.add(index1);
+		indices.add(index2);
 	}
 	
-	public void apply(LinkedList<SortEvent<T>> arr) {
-		arr.add(new CompareEvent<>(fstIndex, sndIndex));
-		
-		if (!indices.contains(fstIndex)) { indices.add(fstIndex); }
-		if (!indices.contains(sndIndex)) { indices.add(sndIndex); }
+	public void apply(T[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			// figure out what type of event it was
+			// apply events from indices to array
+		}
 	}
 
 	public List<Integer> getAffectedIndices() {
