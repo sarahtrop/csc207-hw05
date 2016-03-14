@@ -3,10 +3,11 @@ package edu.grinnell.sortingvisualizer.sorts;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
-import edu.grinnell.sortingvisualizer.events.CompareEvent;
-import edu.grinnell.sortingvisualizer.events.SortEvent;
-import edu.grinnell.sortingvisualizer.events.SwapEvent;
+import edu.grinnell.sortingvisualizer.sortevents.CompareEvent;
+import edu.grinnell.sortingvisualizer.sortevents.SortEvent;
+import edu.grinnell.sortingvisualizer.sortevents.SwapEvent;
 
 public class Sorts {
 	
@@ -68,42 +69,32 @@ public class Sorts {
 	 * @author tropsara17, ehrhardh17
 	 */
 	public static <T extends Comparable<T>> void mergeSort(T[] arr) {
-		arr = Arrays.copyOf(mergeSortHelper(arr, 0, arr.length), arr.length);
+		mergeSortHelper(arr, 0, arr.length);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<T>> void mergeSortHelper(T[] arr, int lo, int hi) {
-		int mid = arr.length / 2;
-		int leftSize = mid;
-		int rightSize = arr.length - mid;
-		Object[] result = new Object[arr.length];
+		int mid = (hi - lo) / 2 + lo;
 		
-		mergeSortHelper(arr, lo, mid);
-		 mergeSortHelper(arr, mid, hi);
+		if (hi - lo > 1) {
+			mergeSortHelper(arr, lo, mid);
+			mergeSortHelper(arr, mid, hi);
+		}
 		
-		int leftPos = 0;
-		int rightPos = 0;
-		int resultPos = 0;
-		
-		while(leftPos < leftSize || rightPos < rightSize) {
-			if (leftPos == leftSize) {
-				result[resultPos] = right[rightPos];
-				rightPos++;
-				resultPos++;
-			} else if (rightPos == rightSize) {
-				result[resultPos] = left[leftPos];
-				leftPos++;
-				resultPos++;
+		int lowerBound = lo;
+		int middle = mid;
+		Object[] newArray = new Object[hi-lo];
+		for(int n = 0; n < hi-lo; n++) {
+			if(middle == hi || (arr[lowerBound].compareTo(arr[middle]) < 0 && lowerBound < mid)) {
+				newArray[n] = arr[lowerBound];
+				lowerBound++;
 			} else {
-				if (left[leftPos].compareTo(right[rightPos]) < 0) {
-					result[resultPos] = left[leftPos];
-					resultPos++;
-					leftPos++;
-				} else {
-					result[resultPos] = right[rightPos];
-					resultPos++;
-					rightPos++;
-				}
+				newArray[n] = arr[middle];
+				middle++;
 			}
+		}
+		for (int m = lo; m < hi; m++) {
+			arr[m] = (T)newArray[m-lo];
 		}
 	}
 	
@@ -113,7 +104,28 @@ public class Sorts {
 	 * @author tropsara17, ehrhardh17
 	 */
 	public static <T extends Comparable<T>> void quickSort(T[] arr) {
+		quickSortHelper(arr, 0, arr.length);
+	}
+	
+	public static <T extends Comparable<T>> void quickSortHelper(T[] arr, int lo, int hi) {
+		Random r = new Random();
+		int index = r.nextInt(hi - lo) + lo;
+		T pivot = arr[index];
+		int front = lo;
+		int back = hi - 2;
+		swap(arr, index, hi - 1);
 		
+		while(front != back) {
+			while (arr[front].compareTo(pivot) < 0) { front++; }
+			while (arr[back].compareTo(pivot) > 0) { back--; }
+			swap(arr, front, back);
+		}
+	
+		if (arr[front].compareTo(pivot) > 0) { swap(arr, hi, front); }
+		else { swap(arr, hi, front + 1); }
+		 
+		if (front - lo > 1) { quickSortHelper(arr, lo, front); }
+		if (hi - front > 1) { quickSortHelper(arr, front, hi); }
 	}
 
 	/**

@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import edu.grinnell.sortingvisualizer.events.SortEvent;
+import edu.grinnell.sortingvisualizer.sortevents.SortEvent;
 
 /**
  * Testing sorting algorithms
@@ -135,7 +135,7 @@ public class SortsTest {
 					"[armadillo, banana, dog, hedgehog, lion, puppy, rabbit, turtle, zebra]", Arrays.toString(stringArray));
 		assertEquals("Character array: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray));
 	}
-	
+	/*
 	@Test
 	public void eventSortTest() {
 		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
@@ -143,7 +143,7 @@ public class SortsTest {
 		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog", "puppy" };
 		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
 		
-		List<SortEvent<T>> events;
+		//List<SortEvent<T>> events;
 		
 		Sorts.eventSort(intArray, events);
 		Sorts.eventSort(doubleArray, events);
@@ -158,5 +158,5 @@ public class SortsTest {
 					"[armadillo, banana, dog, hedgehog, lion, puppy, rabbit, turtle, zebra]", Arrays.toString(stringArray));
 		assertEquals("Character array: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray));
 	}
-
+*/
 }
