@@ -1,5 +1,6 @@
-package edu.grinnell.sortingvisualizer.events;
+package edu.grinnell.sortingvisualizer.sortevents;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SwapEvent<T> implements SortEvent<T> {
@@ -15,10 +16,12 @@ public class SwapEvent<T> implements SortEvent<T> {
 		indices.add(index2);
 	}
 	
-	public <T extends Comparable<T>> void apply(T[] arr) {
-		T temp = arr[fstIndex];
-		arr[fstIndex] = arr[sndIndex];
-		arr[sndIndex] = temp;
+	public <T extends Comparable<T>> void apply(ArrayList<T> arr) {
+		T temp = arr.get(fstIndex);
+		arr.add(fstIndex, arr.get(sndIndex));
+		arr.remove(fstIndex + 1);
+		arr.add(sndIndex, temp);
+		arr.remove(sndIndex + 1);
 	}
 
 	public List<Integer> getAffectedIndices() {
