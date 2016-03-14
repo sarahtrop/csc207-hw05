@@ -71,14 +71,14 @@ public class Sorts {
 		arr = Arrays.copyOf(mergeSortHelper(arr, 0, arr.length), arr.length);
 	}
 	
-	public static <T extends Comparable<T>> T[] mergeSortHelper(T[] arr, int lo, int hi) {
+	public static <T extends Comparable<T>> void mergeSortHelper(T[] arr, int lo, int hi) {
 		int mid = arr.length / 2;
 		int leftSize = mid;
 		int rightSize = arr.length - mid;
-		T[] result = new T[arr.length];
+		Object[] result = new Object[arr.length];
 		
-		T[] left = mergeSortHelper(arr, lo, mid);
-		T[] right = mergeSortHelper(arr, mid, hi);
+		mergeSortHelper(arr, lo, mid);
+		 mergeSortHelper(arr, mid, hi);
 		
 		int leftPos = 0;
 		int rightPos = 0;
@@ -105,7 +105,6 @@ public class Sorts {
 				}
 			}
 		}
-		return result;
 	}
 	
 	/**
