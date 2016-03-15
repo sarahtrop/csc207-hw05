@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import edu.grinnell.sortingvisualizer.sortevents.CompareEvent;
+import edu.grinnell.sortingvisualizer.sortevents.CopyEvent;
 import edu.grinnell.sortingvisualizer.sortevents.SortEvent;
 import edu.grinnell.sortingvisualizer.sortevents.SwapEvent;
 
@@ -86,6 +87,7 @@ public class Sorts {
 		Object[] newArray = new Object[hi-lo];
 		for(int n = 0; n < hi-lo; n++) {
 			if(middle == hi || (arr[lowerBound].compareTo(arr[middle]) < 0 && lowerBound < mid)) {
+				new CompareEvent<>(lowerBound, middle);
 				newArray[n] = arr[lowerBound];
 				lowerBound++;
 			} else {
@@ -96,6 +98,7 @@ public class Sorts {
 		for (int m = lo; m < hi; m++) {
 			arr[m] = (T)newArray[m-lo];
 		}
+		new CopyEvent<T>(lo, hi);
 	}
 	
 	/**
@@ -103,30 +106,32 @@ public class Sorts {
 	 * @param arr	an array
 	 * @author tropsara17, ehrhardh17
 	 */
-	public static <T extends Comparable<T>> void quickSort(T[] arr) {
-		quickSortHelper(arr, 0, arr.length);
-	}
-	
-	public static <T extends Comparable<T>> void quickSortHelper(T[] arr, int lo, int hi) {
-		Random r = new Random();
-		int index = r.nextInt(hi - lo) + lo;
-		T pivot = arr[index];
-		int front = lo;
-		int back = hi - 2;
-		swap(arr, index, hi - 1);
-		
-		while(front != back) {
-			while (arr[front].compareTo(pivot) < 0) { front++; }
-			while (arr[back].compareTo(pivot) > 0) { back--; }
-			swap(arr, front, back);
-		}
-	
-		if (arr[front].compareTo(pivot) > 0) { swap(arr, hi, front); }
-		else { swap(arr, hi, front + 1); }
-		 
-		if (front - lo > 1) { quickSortHelper(arr, lo, front); }
-		if (hi - front > 1) { quickSortHelper(arr, front, hi); }
-	}
+    public static <T extends Comparable<T>> void quickSort(T[] arr, int lo, int hi) {
+        int i = lo;
+        int j = hi;
+        int index = lo+(hi-lo)/2;
+        T pivot = arr[index];
+        
+        while (i <= j) {
+            while (arr[i].compareTo(pivot) < 0) {
+            	new CompareEvent<T>(i, index);
+                i++;
+            }
+            while (arr[j].compareTo(pivot) > 0) {
+            	new CompareEvent<T>(j, index);
+                j--;
+            }
+            if (i <= j) {
+                swap(arr, i, j);
+                i++;
+                j--;
+            }
+        }
+        if (hi < j)
+            quickSort(arr, lo, j);
+        if (i < hi)
+            quickSort(arr, i, lo);
+    }
 
 	/**
 	 * Method sorts an array in ascending order using the shell sort algorithm.
