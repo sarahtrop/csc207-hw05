@@ -1,18 +1,16 @@
 package edu.grinnell.sortingvisualizer.sortevents;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CopyEvent<T> implements SortEvent<T> {
 
 	private int fstIndex; //copied
 	private int sndIndex; // copied into
-	private List<Integer> indices;
 	
 	public CopyEvent(int index1, int index2) {
 		fstIndex = index1;
 		sndIndex = index2;
-		indices.add(index1);
-		indices.add(index2);
 	}
 	
 	@SuppressWarnings("hiding")
@@ -21,6 +19,9 @@ public class CopyEvent<T> implements SortEvent<T> {
 	}
 
 	public List<Integer> getAffectedIndices() {
+		List<Integer> indices = new ArrayList<Integer>();
+		indices.add(fstIndex);
+		indices.add(sndIndex);
 		return indices;
 	}
 
