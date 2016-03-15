@@ -6,7 +6,7 @@ package edu.grinnell.sortingvisualizer;
  * in the program.
  */
 public class NoteIndices {
-
+	
     /**
      * @param n the size of the scale object that these indices map into
      */
@@ -26,7 +26,7 @@ public class NoteIndices {
     
     /** @return the indices of this NoteIndices object */
     public Integer[] getNotes() { 
-        // TODO: fill me in
+    	// TODO: fill me in
         return null;
     }
     
