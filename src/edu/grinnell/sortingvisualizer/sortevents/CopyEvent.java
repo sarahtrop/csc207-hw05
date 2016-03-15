@@ -4,23 +4,20 @@ import java.util.List;
 
 public class CopyEvent<T> implements SortEvent<T> {
 
-	// What to copy
-	private int startIndex;
-	private int endIndex;
+	private int fstIndex; //copied
+	private int sndIndex; // copied into
 	private List<Integer> indices;
 	
 	public CopyEvent(int index1, int index2) {
-		startIndex = index1;
-		endIndex = index2;
-		
-		for (int i = index1; i <= index2; i++) {
-			indices.add(i);
-		}
+		fstIndex = index1;
+		sndIndex = index2;
+		indices.add(index1);
+		indices.add(index2);
 	}
 	
 	@SuppressWarnings("hiding")
 	public <T extends Comparable<T>> void apply(T[] arr) {
-		
+		arr[sndIndex] = arr[fstIndex];
 	}
 
 	public List<Integer> getAffectedIndices() {
