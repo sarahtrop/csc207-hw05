@@ -20,6 +20,7 @@ import edu.grinnell.sortingvisualizer.sorts.Sorts;
  * The Control Panel houses the GUI for interacting with the Sounds of
  * Sorting application.
  */
+@SuppressWarnings("unused")
 public class ControlPanel extends JPanel {
 
     private static final long serialVersionUID = 3988453646682174194L;
@@ -140,10 +141,12 @@ public class ControlPanel extends JPanel {
                 isSorting = true;
                 
                 // 1. Create the sorting events list
-                List<SortEvent<Integer>> newEvents = generateEvents(/*get sort type*/, notes.getNotes());
+                List<SortEvent<Integer>> newEvents = generateEvents((String) sorts.getSelectedItem(), notes.getNotes());
                 // 2. Add in the compare events to the end of the list
                 final List<SortEvent<Integer>> events = new java.util.LinkedList<>();
-                events.addAll(newEvents);
+                for(int i = 0; i < events.size(); i++) {
+                	events.add(newEvents.get(i));
+                }
                 // NOTE: The Timer class repetitively invokes a method at a
                 //       fixed interval.  Here we are specifying that method
                 //       by creating an _anonymous subclass_ of the TimeTask
@@ -164,7 +167,7 @@ public class ControlPanel extends JPanel {
                             // 3. Play the corresponding notes denoted by the
                             //    affected indices logged in the event.
                             for (int i = 0; i < e.getAffectedIndices().size(); i++) {
-                            	playNote(e.getAffectedIndices().get(i), e.isEmphasized());
+                            	scale.playNote(e.getAffectedIndices().get(i), e.isEmphasized());
                             }
                             // 4. Highlight those affected indices.
                             for (int i = 0; i < e.getAffectedIndices().size(); i++) {
