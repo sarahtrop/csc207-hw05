@@ -30,8 +30,8 @@ public class ArrayPanel extends JPanel {
     	Color currentColor;
     	Integer[] colorNotes = notes.getNotes();
         for (int i = 0; i< colorNotes.length; i++) {
-        	if (colorNotes[i].isHighlighted()) {
-        		highlightNote(colorNotes[i]);
+        	if (colorNotes.isHighlighted(i)) {
+        		colorNotes.highlightNote(i);
         		currentColor = new Color(255, 255, 100);
         	} else {
         		currentColor = new Color(128, 150, 150+(i*2));

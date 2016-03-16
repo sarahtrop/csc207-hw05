@@ -12,6 +12,7 @@ public class NoteIndices {
 	
 	private int[] notes;
 	private Scale scale;
+	private boolean[] highlight;
 	
     /**
      * @param n the size of the scale object that these indices map into
@@ -29,6 +30,7 @@ public class NoteIndices {
     public void initializeAndShuffle(int n) {
     	notes = shuffle(notes);
         scale = new Scale(notes);
+        highlight = new boolean[notes.length];
     }
     
     /**
@@ -75,17 +77,18 @@ public class NoteIndices {
      * @param index the index to highlight
      */
     public void highlightNote(int index) {
-    	// TODO: fill me in
+    	highlight[index] = true;
     }
     
     /** @return true if the given index is highlighted */
     public boolean isHighlighted(int index) {
-        // TODO: fill me in
-        return false;
+        return highlight[index];
     }
     
     /** Clears all highlighted indices from this collection */
     public void clearAllHighlighted() {
-        // TODO: fill me in
+        for (int i = 0; i < highlight.length; i++) {
+        	highlight[i] = false;
+        }
     }
 }
