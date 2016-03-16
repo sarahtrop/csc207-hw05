@@ -1,6 +1,7 @@
 package edu.grinnell.sortingvisualizer.sorts;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import edu.grinnell.sortingvisualizer.sortevents.CompareEvent;
@@ -21,12 +22,12 @@ public class Sorts {
 			int temp = i;
 			for (int j = i; j < arr.length; j++) {
 				if (arr[j].compareTo(arr[temp]) < 0) {
-					events.add(new CompareEvent<>(i, j));
+					events.add((SortEvent<T>) new CompareEvent<>(i, j));
 					temp = j;
 				}
 			}
 			swap(arr, temp, i);
-			events.add(new SwapEvent<>(temp, i));
+			events.add((SortEvent<T>) new SwapEvent<>(temp, i));
 		}	
 		return events;
 	}
@@ -37,13 +38,13 @@ public class Sorts {
 	 * @author tropsara17, ehrhardh17
 	 */
 	public static <T extends Comparable<T>> List<SortEvent<T>> insertionSort(T[] arr) {
-		List<SortEvent<T>> events = new ArrayList<>(); 
+		List<SortEvent<T>> events = new ArrayList<>();
 		for(int i = 1; i < arr.length; i++) {
 			for (int j = i; j > 0; j--) {
 				if (arr[j].compareTo(arr[j-1]) < 0) {
-					events.add(new CompareEvent<>(i, j));
-					swap(arr, j, i);
-					events.add(new SwapEvent<>(j, i));
+					events.add((SortEvent<T>) new CompareEvent<>(j, j-1));
+					swap(arr, j, j-1);
+					events.add((SortEvent<T>) new SwapEvent<>(j, j-1));
 				}
 			}
 		}
@@ -61,12 +62,12 @@ public class Sorts {
 			int temp = i;
 			for (int j = i; j >= 0; j--) {
 				if (arr[j].compareTo(arr[temp]) > 0) {
-					events.add(new CompareEvent<>(i, j));
+					events.add((SortEvent<T>) new CompareEvent<>(i, j));
 					temp = j;
 				}
 			}
 			swap(arr, temp, i);
-			events.add(new SwapEvent<>(temp, i));
+			events.add((SortEvent<T>) new SwapEvent<>(temp, i));
 		}
 		return events;
 	}
@@ -95,12 +96,12 @@ public class Sorts {
 		Object[] newArray = new Object[hi-lo];
 		for(int n = 0; n < hi-lo; n++) {
 			if(middle == hi || (arr[lowerBound].compareTo(arr[middle]) < 0 && lowerBound < mid)) {
-				events.add(new CompareEvent<>(lowerBound, middle));
+				events.add((SortEvent<T>) new CompareEvent<>(lowerBound, middle));
 				newArray[n] = arr[lowerBound];
 				lowerBound++;
 			} else {
 				newArray[n] = arr[middle];
-				events.add(new CopyEvent<>(middle, n));
+				events.add((SortEvent<T>) new CopyEvent<>(middle, n));
 				middle++;
 			}
 		}
@@ -121,31 +122,33 @@ public class Sorts {
 	
     public static <T extends Comparable<T>> List<SortEvent<T>> quickSortHelper(T[] arr, int lo, int hi) {
     	List<SortEvent<T>> events = new ArrayList<>();
-    	int i = lo;
-        int j = hi;
-        int index = lo+(hi-lo)/2;
-        T pivot = arr[index];
+    	
+        int mid = lo + (hi - lo) /2;
+        T pivot = arr[mid];
         
-        while (i <= j) {
+        if (lo >= hi) { return null; }
+        
+        int i = lo, j = hi;
+        while (i < j) {
             while (arr[i].compareTo(pivot) < 0) {
-            	events.add(new CompareEvent<>(i, index));
+            	events.add((SortEvent<T>) new CompareEvent<>(i, mid));
                 i++;
             }
             while (arr[j].compareTo(pivot) > 0) {
-            	events.add(new CompareEvent<>(j, index));
+            	events.add((SortEvent<T>) new CompareEvent<>(j, mid));
                 j--;
             }
             if (i <= j) {
                 swap(arr, i, j);
-                events.add(new SwapEvent<>(i, j));
+                events.add((SortEvent<T>) new SwapEvent<>(i, j));
                 i++;
                 j--;
             }
         }
-        if (hi < j)
+        if (lo < j)
             quickSortHelper(arr, lo, j);
         if (i < hi)
-            quickSortHelper(arr, i, lo);
+            quickSortHelper(arr, i, hi);
         return events;
     }
 
@@ -169,11 +172,11 @@ public class Sorts {
 			for(i = g; i < arr.length; i++) {
 				T temp = arr[i];
 				for(j = i; j >= g && arr[j-g].compareTo(temp) > 0; j -= g) {
-					events.add(new CompareEvent<>(i, j));
+					events.add((SortEvent<T>) new CompareEvent<>(i, j));
 					arr[j] = arr[j-g];
 				}
 				arr[j] = temp;
-				events.add(new CopyEvent<>(i, j));
+				events.add((SortEvent<T>) new CopyEvent<>(i, j));
 			}
 		}
 		return events;
@@ -186,13 +189,14 @@ public class Sorts {
 	 * @author tropsara17, hudsonad17
 	 */
 	public static <T extends Comparable<T>>void eventSort(T[] arr, List<SortEvent<T>> events) {
-		for(int i = 0; i < arr.length; i++) {
+		for(int i = 0; i < events.size(); i++) {
 			events.get(i).apply(arr);
 		}
 	}
 	
 	/**
-	 * Swaps two values in an array
+	 * Swaps two values in an array.
+	 * Used in sorting functions above.
 	 * @param arr	an array
 	 * @param j		an integer
 	 * @param i		an integer
@@ -203,4 +207,5 @@ public class Sorts {
 		arr[j] = arr[i];
 		arr[i] = temp;
 	}
+	
 }

@@ -94,7 +94,7 @@ public class ControlPanel extends JPanel {
      * @param notes the Notes object that this control panel manages
      * @param panel the ArrayPanel that this panel renders to
      */
-    public ControlPanel(NoteIndices notes, ArrayPanel panel) {
+    public ControlPanel(final NoteIndices notes, final ArrayPanel panel) {
         scale = new Scale(bMinorPentatonicValues);
         notes.initializeAndShuffle(scale.size());
         this.panel = panel;
@@ -110,7 +110,7 @@ public class ControlPanel extends JPanel {
         add(sorts);
         
         ///// The scale selection combo box /////
-        JComboBox<String> scales = new JComboBox<>(new String[] {
+        final JComboBox<String> scales = new JComboBox<>(new String[] {
            "Pentatonic",
            "Chromatic"
         });
@@ -141,7 +141,7 @@ public class ControlPanel extends JPanel {
                 // TODO: fill me in
                 // 1. Create the sorting events list
                 // 2. Add in the compare events to the end of the list
-                List<SortEvent<Integer>> events = new java.util.LinkedList<>();
+                final List<SortEvent<Integer>> events = new java.util.LinkedList<>();
                 
                 // NOTE: The Timer class repetitively invokes a method at a
                 //       fixed interval.  Here we are specifying that method

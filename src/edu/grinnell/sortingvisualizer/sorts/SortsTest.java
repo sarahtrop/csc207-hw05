@@ -16,31 +16,6 @@ import edu.grinnell.sortingvisualizer.sortevents.SortEvent;
  *
  */
 public class SortsTest {
-	List<SortEvent<Double>> selectionEvents = new ArrayList<>();
-	List<SortEvent<Integer>> insertionEvents = new ArrayList<>();
-	List<SortEvent<Character>> bubbleEvents = new ArrayList<>();
-	List<SortEvent<String>> mergeEvents = new ArrayList<>();
-	List<SortEvent<Integer>> quickEvents = new ArrayList<>();
-	List<SortEvent<Double>> shellEvents = new ArrayList<>();
-	
-	@Test
-	public void insertionSortTest() {
-		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
-		Double[] doubleArray = { 100.0, -62.345, -8.97, 567.3, 2.1 };
-		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog" };
-		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
-		
-		insertionEvents = Sorts.insertionSort(intArray);
-		Sorts.insertionSort(doubleArray);
-		Sorts.insertionSort(stringArray);
-		Sorts.insertionSort(characterArray);
-		
-		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
-		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
-		assertEquals("String array: { dog, zebra, lion, rabbit, turtle, banana, armadillo, hedgehog }", 
-					"[armadillo, banana, dog, hedgehog, lion, rabbit, turtle, zebra]", Arrays.toString(stringArray));
-		assertEquals("Character array: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray));
-	}
 	
 	@Test
 	public void selectionSortTest() {
@@ -50,9 +25,28 @@ public class SortsTest {
 		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
 		
 		Sorts.selectionSort(intArray);
-		selectionEvents = Sorts.selectionSort(doubleArray);
+		Sorts.selectionSort(doubleArray);
 		Sorts.selectionSort(stringArray);
 		Sorts.selectionSort(characterArray);
+		
+		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
+		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
+		assertEquals("String array: { dog, zebra, lion, rabbit, turtle, banana, armadillo, hedgehog }", 
+					"[armadillo, banana, dog, hedgehog, lion, rabbit, turtle, zebra]", Arrays.toString(stringArray));
+		assertEquals("Character array: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray));
+	}
+	
+	@Test
+	public void insertionSortTest() {
+		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
+		Double[] doubleArray = { 100.0, -62.345, -8.97, 567.3, 2.1 };
+		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog" };
+		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
+		
+		Sorts.insertionSort(intArray);
+		Sorts.insertionSort(doubleArray);
+		Sorts.insertionSort(stringArray);
+		Sorts.insertionSort(characterArray);
 		
 		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
 		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
@@ -71,7 +65,7 @@ public class SortsTest {
 		Sorts.bubbleSort(intArray);
 		Sorts.bubbleSort(doubleArray);
 		Sorts.bubbleSort(stringArray);
-		bubbleEvents = Sorts.bubbleSort(characterArray);
+		Sorts.bubbleSort(characterArray);
 		
 		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
 		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
@@ -84,15 +78,15 @@ public class SortsTest {
 	public void shellSortTest() {
 		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
 		Double[] doubleArray = { 100.0, -62.345, -8.97, 567.3, 2.1 };
+		Double[] doubleArray2 = { -7.0, 9.3, 4.5, 2.12, 98.4 };
 		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog", "puppy" };
 		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
 		
 		Sorts.shellSort(intArray);
-		shellEvents = Sorts.shellSort(doubleArray);
+		Sorts.shellSort(doubleArray);
 		Sorts.shellSort(stringArray);
 		Sorts.shellSort(characterArray);
-		
-		System.out.println(Arrays.toString(doubleArray));
+		Sorts.shellSort(doubleArray2);
 		
 		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
 		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
@@ -110,10 +104,8 @@ public class SortsTest {
 		
 		Sorts.mergeSort(intArray);
 		Sorts.mergeSort(doubleArray);
-		mergeEvents = Sorts.mergeSort(stringArray);
+		Sorts.mergeSort(stringArray);
 		Sorts.mergeSort(characterArray);
-		
-		System.out.println(Arrays.toString(doubleArray));
 		
 		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
 		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
@@ -125,6 +117,7 @@ public class SortsTest {
 	@Test
 	public void quickSortTest() {
 		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
+		Integer[] intArray2 = { 10, 11, 87, 93, 2 };
 		Double[] doubleArray = { 100.0, -62.345, -8.97, 567.3, 2.1 };
 		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog", "puppy" };
 		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
@@ -133,8 +126,7 @@ public class SortsTest {
 		Sorts.quickSort(doubleArray);
 		Sorts.quickSort(stringArray);
 		Sorts.quickSort(characterArray);
-		
-		System.out.println(Arrays.toString(doubleArray));
+		Sorts.quickSort(intArray2);
 		
 		assertEquals("Integer array: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
 		assertEquals("Double array: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
@@ -145,6 +137,7 @@ public class SortsTest {
 
 	@Test
 	public void eventSortTest() {
+		// arrays to sort
 		Integer[] intArray = { 1, 6, 7, 4, 2, 10, 23 };
 		Integer[] intArray2 = { 10, 11, 87, 93, 2 };
 		Double[] doubleArray = { 100.0, -62.345, -8.97, 567.3, 2.1 };
@@ -152,23 +145,37 @@ public class SortsTest {
 		String[] stringArray = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog", "puppy" };
 		Character[] characterArray = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
 		
+		// creating lists of events for eventSort
+		List<SortEvent<Integer>> quickEvents = Sorts.quickSort(intArray2);
+		List<SortEvent<String>> mergeEvents = Sorts.mergeSort(stringArray);
+		List<SortEvent<Double>> shellEvents = Sorts.shellSort(doubleArray2);
+		List<SortEvent<Character>> bubbleEvents = Sorts.bubbleSort(characterArray);
+		List<SortEvent<Double>> selectionEvents = Sorts.selectionSort(doubleArray);
+		List<SortEvent<Integer>> insertionEvents = Sorts.insertionSort(intArray);
 		
-		Sorts.eventSort(intArray, insertionEvents);
-		Sorts.eventSort(doubleArray, selectionEvents);
-		Sorts.eventSort(stringArray, mergeEvents);
-		Sorts.eventSort(characterArray, bubbleEvents);
-		Sorts.eventSort(intArray2, quickEvents);
-		Sorts.eventSort(doubleArray2, shellEvents);
+		// exact copies of arrays to sort
+		Integer[] intArray1 = { 1, 6, 7, 4, 2, 10, 23 };
+		Integer[] intArray2_1 = { 10, 11, 87, 93, 2 };
+		Double[] doubleArray1 = { 100.0, -62.345, -8.97, 567.3, 2.1 };
+		Double[] doubleArray2_1 = { -7.0, 9.3, 4.5, 2.12, 98.4 };
+		String[] stringArray1 = {"dog", "zebra", "lion", "rabbit", "turtle", "banana", "armadillo", "hedgehog", "puppy" };
+		Character[] characterArray1 = { 'y', 'i', 'p', 'a', 'g', 'f', 'e', 'w', 'q' };
 		
-		System.out.println(Arrays.toString(doubleArray));
 		
-		assertEquals("Insertion: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray));
-		assertEquals("Selection: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray));
+		Sorts.eventSort(intArray1, insertionEvents);
+		Sorts.eventSort(doubleArray1, selectionEvents);
+		Sorts.eventSort(stringArray1, mergeEvents); // index out of bounds error
+		Sorts.eventSort(characterArray1, bubbleEvents);
+		Sorts.eventSort(intArray2_1, quickEvents);
+		Sorts.eventSort(doubleArray2_1, shellEvents);
+		
+		assertEquals("Insertion: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray1));
+		assertEquals("Selection: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray1));
 		assertEquals("Merge: { dog, zebra, lion, rabbit, turtle, banana, armadillo, hedgehog, puppy }", 
-					"[armadillo, banana, dog, hedgehog, lion, puppy, rabbit, turtle, zebra]", Arrays.toString(stringArray));
-		assertEquals("Bubble: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray));
-		assertEquals("Quick: { 10, 11, 87, 93, 2 }", "[2, 10, 11, 87, 93]", Arrays.toString(intArray2));
-		assertEquals("Shell: { -7.0, 9.3, 4.5, 2.12, 98.4 }", "[-7.0, 2.12, 4.5, 9.3, 98.4]", Arrays.toString(doubleArray2));
+					"[armadillo, banana, dog, hedgehog, lion, puppy, rabbit, turtle, zebra]", Arrays.toString(stringArray1));
+		assertEquals("Bubble: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray1));
+		assertEquals("Quick: { 10, 11, 87, 93, 2 }", "[2, 10, 11, 87, 93]", Arrays.toString(intArray2_1));
+		assertEquals("Shell: { -7.0, 9.3, 4.5, 2.12, 98.4 }", "[-7.0, 2.12, 4.5, 9.3, 98.4]", Arrays.toString(doubleArray2_1));
 	}
 
 }
