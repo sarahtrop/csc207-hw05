@@ -4,6 +4,10 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import edu.grinnell.sortingvisualizer.audio.NoteIndices;
+import edu.grinnell.sortingvisualizer.rendering.ArrayPanel;
+import edu.grinnell.sortingvisualizer.rendering.ControlPanel;
+
 public class SortingVisualizer {
 
     private static final int WIDTH = 400;

@@ -1,4 +1,4 @@
-package edu.grinnell.sortingvisualizer;
+package edu.grinnell.sortingvisualizer.audio;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -75,7 +75,7 @@ public class NoteIndices {
      * @param index the index to highlight
      */
     public void highlightNote(int index) {
-    	
+    	// TODO: fill me in
     }
     
     /** @return true if the given index is highlighted */

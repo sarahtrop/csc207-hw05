@@ -1,8 +1,7 @@
-package edu.grinnell.sortingvisualizer;
+package edu.grinnell.sortingvisualizer.rendering;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import edu.grinnell.sortingvisualizer.audio.NoteIndices;
+import edu.grinnell.sortingvisualizer.audio.Scale;
 import edu.grinnell.sortingvisualizer.sortevents.CompareEvent;
 import edu.grinnell.sortingvisualizer.sortevents.SortEvent;
 import edu.grinnell.sortingvisualizer.sorts.Sorts;
@@ -138,11 +139,12 @@ public class ControlPanel extends JPanel {
                 if (isSorting) { return; }
                 isSorting = true;
                 
-                // TODO: fill me in
                 // 1. Create the sorting events list
+                String sort; // somehow pick which sort to use
+                List<SortEvent<Integer>> newEvents = generateEvents(sort, notes.getNotes());
                 // 2. Add in the compare events to the end of the list
                 final List<SortEvent<Integer>> events = new java.util.LinkedList<>();
-                
+                events.addAll(newEvents);
                 // NOTE: The Timer class repetitively invokes a method at a
                 //       fixed interval.  Here we are specifying that method
                 //       by creating an _anonymous subclass_ of the TimeTask
@@ -159,9 +161,12 @@ public class ControlPanel extends JPanel {
                             SortEvent<Integer> e = events.get(index++);
                             // TODO: fill me in
                             // 1. Apply the next sort event.
+                            e.apply(notes.getNotes());
                             // 3. Play the corresponding notes denoted by the
                             //    affected indices logged in the event.
+                            playNote(e.getAffectedIndices());
                             // 4. Highlight those affected indices.
+                            highlightNote(e.getAffectedIndices());
                             panel.repaint();
                         } else {
                             this.cancel();
