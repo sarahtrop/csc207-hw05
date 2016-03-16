@@ -28,16 +28,15 @@ public class ArrayPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
     	Color currentColor;
-    	Integer[] colorNotes = notes.getNotes();
-        for (int i = 0; i< colorNotes.length; i++) {
-        	if (colorNotes.isHighlighted(i)) {
-        		colorNotes.highlightNote(i);
+        for (int i = 0; i< notes.numNotes(); i++) {
+        	if (notes.isHighlighted(i)) {
+        		notes.highlightNote(i);
         		currentColor = new Color(255, 255, 100);
         	} else {
         		currentColor = new Color(128, 150, 150+(i*2));
         	}
         	g.setColor(currentColor);
         }
-        colorNotes.clearAllHighlighted();
+        notes.clearAllHighlighted();
     }
 }

@@ -140,8 +140,7 @@ public class ControlPanel extends JPanel {
                 isSorting = true;
                 
                 // 1. Create the sorting events list
-                String sort; // somehow pick which sort to use
-                List<SortEvent<Integer>> newEvents = generateEvents(sort, notes.getNotes());
+                List<SortEvent<Integer>> newEvents = generateEvents(/*get sort type*/, notes.getNotes());
                 // 2. Add in the compare events to the end of the list
                 final List<SortEvent<Integer>> events = new java.util.LinkedList<>();
                 events.addAll(newEvents);
@@ -164,9 +163,13 @@ public class ControlPanel extends JPanel {
                             e.apply(notes.getNotes());
                             // 3. Play the corresponding notes denoted by the
                             //    affected indices logged in the event.
-                            playNote(e.getAffectedIndices());
+                            for (int i = 0; i < e.getAffectedIndices().size(); i++) {
+                            	playNote(e.getAffectedIndices().get(i), e.isEmphasized());
+                            }
                             // 4. Highlight those affected indices.
-                            highlightNote(e.getAffectedIndices());
+                            for (int i = 0; i < e.getAffectedIndices().size(); i++) {
+                            	notes.highlightNote(e.getAffectedIndices().get(i));
+                            }
                             panel.repaint();
                         } else {
                             this.cancel();

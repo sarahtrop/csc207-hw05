@@ -1,7 +1,6 @@
 package edu.grinnell.sortingvisualizer.sorts;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import edu.grinnell.sortingvisualizer.sortevents.CompareEvent;
@@ -16,6 +15,7 @@ public class Sorts {
 	 * @param arr	an array
 	 * @author tropsara17, ehrhardh17
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<T>> List<SortEvent<T>> selectionSort(T[] arr) {
 		List<SortEvent<T>> events = new ArrayList<>(); 
 		for(int i = 0; i < arr.length; i++) {
@@ -37,6 +37,7 @@ public class Sorts {
 	 * @param arr	an array
 	 * @author tropsara17, ehrhardh17
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<T>> List<SortEvent<T>> insertionSort(T[] arr) {
 		List<SortEvent<T>> events = new ArrayList<>();
 		for(int i = 1; i < arr.length; i++) {
@@ -56,6 +57,7 @@ public class Sorts {
 	 * @param arr	an array
 	 * @author tropsara17, ehrhardh17
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<T>> List<SortEvent<T>> bubbleSort(T[] arr) {
 		List<SortEvent<T>> events = new ArrayList<>();
 		for(int i = arr.length - 1; i >= 0; i--) {
@@ -120,7 +122,8 @@ public class Sorts {
 		return quickSortHelper(arr, 0, arr.length - 1);
 	}
 	
-    public static <T extends Comparable<T>> List<SortEvent<T>> quickSortHelper(T[] arr, int lo, int hi) {
+    @SuppressWarnings("unchecked")
+	public static <T extends Comparable<T>> List<SortEvent<T>> quickSortHelper(T[] arr, int lo, int hi) {
     	List<SortEvent<T>> events = new ArrayList<>();
     	
         int mid = lo + (hi - lo) /2;
@@ -157,6 +160,7 @@ public class Sorts {
 	 * @param arr	an array
 	 * @author tropsara17, hudsonad17
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<T>> List<SortEvent<T>> shellSort(T[] arr) {
 		List<SortEvent<T>> events = new ArrayList<>();
 		int[] gaps = new int[arr.length / 2 + 1];

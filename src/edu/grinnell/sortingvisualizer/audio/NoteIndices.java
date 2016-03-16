@@ -11,6 +11,7 @@ import java.util.Random;
 public class NoteIndices {
 	
 	private int[] notes;
+	@SuppressWarnings("unused")
 	private Scale scale;
 	private boolean[] highlight;
 	
@@ -18,7 +19,7 @@ public class NoteIndices {
      * @param n the size of the scale object that these indices map into
      */
     public NoteIndices(int n) {
-        notes = new Integer[n];
+        notes = new int[n];
     }
     
     /**
@@ -69,7 +70,11 @@ public class NoteIndices {
 	
     /** @return the indices of this NoteIndices object */
     public Integer[] getNotes() { 
-        return notes;
+    	Integer[] intNotes = new Integer[notes.length];
+    	for (int i = 0; i < notes.length; i++) {
+    		intNotes[i] = notes[i];
+    	}
+        return intNotes;
     }
     
     /**
@@ -90,5 +95,10 @@ public class NoteIndices {
         for (int i = 0; i < highlight.length; i++) {
         	highlight[i] = false;
         }
+    }
+    
+    /** @return	an int, the length of the note array*/
+    public int numNotes() {
+    	return notes.length;
     }
 }
