@@ -101,8 +101,6 @@ public class ControlPanel extends JPanel {
     	scale = new Scale(bMinorPentatonicValues);
         notes.initializeAndShuffle(scale.size());
         this.panel = panel;
-        
-    	System.out.println(Arrays.toString(notes.getNotes()));
 
         ///// The sort selection combo box /////
         JComboBox<String> sorts = new JComboBox<>(new String[] {
@@ -144,12 +142,8 @@ public class ControlPanel extends JPanel {
                 isSorting = true;
                 
                 // 1. Create the sorting events list
-                List<SortEvent<Integer>> newEvents = generateEvents((String) sorts.getSelectedItem(), notes.getNotes());
                 // 2. Add in the compare events to the end of the list
-                final List<SortEvent<Integer>> events = new java.util.LinkedList<>();
-                for(int i = 0; i < events.size(); i++) {
-                	events.add(newEvents.get(i));
-                }
+                final List<SortEvent<Integer>> events = generateEvents((String) sorts.getSelectedItem(), notes.getNotes());
                 // NOTE: The Timer class repetitively invokes a method at a
                 //       fixed interval.  Here we are specifying that method
                 //       by creating an _anonymous subclass_ of the TimeTask

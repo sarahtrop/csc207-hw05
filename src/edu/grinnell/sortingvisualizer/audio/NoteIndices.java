@@ -1,7 +1,5 @@
 package edu.grinnell.sortingvisualizer.audio;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -11,15 +9,14 @@ import java.util.Random;
  */
 public class NoteIndices {
 	
-	private int[] notes;
-	private Scale scale;
+	private Integer[] notes;
 	private boolean[] highlight;
 	
     /**
      * @param n the size of the scale object that these indices map into
      */
     public NoteIndices(int n) {
-        notes = new int[n];
+    	initializeAndShuffle(n);
     }
     
     /**
@@ -29,41 +26,36 @@ public class NoteIndices {
      * @param n the size of the scale object that these indices map into
      */
     public void initializeAndShuffle(int n) {
+    	notes = new Integer[n];
     	shuffle(notes);
-        scale = new Scale(notes);
         highlight = new boolean[notes.length];
     }
     
     /**
      * Shuffle taken from the last homework
      * Takes an array and returns a shuffled version of that array
-     * @param arr	an array of integers
+     * @param notes2	an array of integers
      * @return		an array of integers
-     * @author tropsara17, segallza
+     * @author hudsonad17
      */
-    public void shuffle(int[] arr) {
-    	for (int i = 0; i < arr.length; i++) {
-    		arr[i] = i;
+    public void shuffle(Integer[] notes2) {
+    	for (int i = 0; i < notes2.length; i++) {
+    		notes2[i] = i;
     	}
-    	
     	Random rand = new Random();
     	int j;
     	int temp;
-    	for (int i = arr.length - 1; i >=0; i--) {
+    	for (int i = notes2.length - 1; i >=0; i--) {
     		j = rand.nextInt(i+1);
-    		temp = arr[j];
-    		arr[j] = arr[i];
-    		arr[i] = temp;
+    		temp = notes2[j];
+    		notes2[j] = notes2[i];
+    		notes2[i] = temp;
     	}
 	}
 	
     /** @return the indices of this NoteIndices object */
     public Integer[] getNotes() { 
-    	Integer[] intNotes = new Integer[notes.length];
-    	for (int i = 0; i < notes.length; i++) {
-    		intNotes[i] = notes[i];
-    	}
-        return intNotes;
+        return notes;
     }
     
     /**

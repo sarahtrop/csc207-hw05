@@ -1,6 +1,7 @@
 package edu.grinnell.sortingvisualizer.sortevents;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SwapEvent<T> implements SortEvent<T> {
@@ -13,8 +14,7 @@ public class SwapEvent<T> implements SortEvent<T> {
 		sndIndex = index2;
 	}
 	
-	@SuppressWarnings("hiding")
-	public <T extends Comparable<T>> void apply(T[] arr) {
+	public void apply(T[] arr) {
 		T temp = arr[fstIndex];
 		arr[fstIndex] = arr[sndIndex];
 		arr[sndIndex] = temp;

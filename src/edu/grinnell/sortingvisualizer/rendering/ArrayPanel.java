@@ -12,7 +12,6 @@ import edu.grinnell.sortingvisualizer.audio.NoteIndices;
 public class ArrayPanel extends JPanel {
 
     private NoteIndices notes;
-    private int totalNumNotes;
     private int width, height;
     
     /**
@@ -27,25 +26,23 @@ public class ArrayPanel extends JPanel {
         this.setPreferredSize(new Dimension(width, height));
         this.width = width;
         this.height = height;
-        this.totalNumNotes = notes.numNotes();
     }
 
     @Override
     public void paintComponent(Graphics g) {
     	Color currentColor;
-        for (int i = 0; i < totalNumNotes; i++) {
+        for (int i = 0; i < notes.numNotes(); i++) {
         	if (notes.isHighlighted(i)) {
-        		notes.highlightNote(i);
         		currentColor = new Color(255, 255, 0);
         	} else {
         		currentColor = new Color(0, 150, 150+(i*2));
         	}
-        	int boxWidth = width / totalNumNotes;
-        	int boxHeight = (i + 1) * (height-1 / totalNumNotes);
+        	int boxWidth = width / notes.numNotes();
+        	int boxHeight = (notes.getNotes()[i] + 1) * (height / notes.numNotes());
         	int x = (boxWidth * i);
         	
         	g.setColor(currentColor);
-        	g.fillRect(x, 0, boxWidth, boxHeight);
+        	g.fillRect(x, height - boxHeight, boxWidth, boxHeight);
         }
         notes.clearAllHighlighted();
     }

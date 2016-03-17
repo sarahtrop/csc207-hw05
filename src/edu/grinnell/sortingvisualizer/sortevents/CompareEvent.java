@@ -13,9 +13,7 @@ public class CompareEvent<T> implements SortEvent<T> {
 		sndIndex = index2;
 	}
 	
-	@SuppressWarnings("hiding")
-	public <T extends Comparable<T>> void apply(T[] arr) {
-		arr[fstIndex].compareTo(arr[sndIndex]);
+	public void apply(T[] arr) {
 	}
 
 	public List<Integer> getAffectedIndices() {
