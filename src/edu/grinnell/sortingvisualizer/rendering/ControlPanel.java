@@ -97,7 +97,7 @@ public class ControlPanel extends JPanel {
      * @param panel the ArrayPanel that this panel renders to
      */
     public ControlPanel(final NoteIndices notes, final ArrayPanel panel) {
-        scale = new Scale(bMinorPentatonicValues);
+    	scale = new Scale(bMinorPentatonicValues);
         notes.initializeAndShuffle(scale.size());
         this.panel = panel;
         

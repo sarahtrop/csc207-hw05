@@ -11,8 +11,7 @@ public class Scale {
     private static final int REGULAR_VELOCITY = 60;
     private static final int EMPHASIZED_VELOCITY = 120;
     
-    ///// Initialization for the Midi sub-system. /////
-    @SuppressWarnings("unused")
+    ///// Initialization for the Midi sub-system. /////s
     private static Synthesizer synth;
     private static MidiChannel instrument;
     static {
