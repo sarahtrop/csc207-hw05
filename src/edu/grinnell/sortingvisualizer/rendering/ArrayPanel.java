@@ -32,7 +32,7 @@ public class ArrayPanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-    	int boxWidth = width / numNotes;
+    	int boxWidth;
     	int boxHeight;
     	int heightFraction;
     	Color currentColor;
@@ -43,6 +43,7 @@ public class ArrayPanel extends JPanel {
         	} else {
         		currentColor = new Color(128, 150, 150+(i*2));
         	}
+        	boxWidth = width / numNotes;
         	heightFraction = height-1 / numNotes;
         	if (i != 0) { boxHeight = i * heightFraction; }
         	else { boxHeight = heightFraction; }
