@@ -12,6 +12,7 @@ import edu.grinnell.sortingvisualizer.audio.NoteIndices;
 public class ArrayPanel extends JPanel {
 
     private NoteIndices notes;
+    private int width, height;
     
     /**
      * Constructs a new ArrayPanel that renders the given note indices to
@@ -23,6 +24,8 @@ public class ArrayPanel extends JPanel {
     public ArrayPanel(NoteIndices notes, int width, int height) {
         this.notes = notes;
         this.setPreferredSize(new Dimension(width, height));
+        this.width = width;
+        this.height = height;
     }
 
     @Override
@@ -35,7 +38,12 @@ public class ArrayPanel extends JPanel {
         	} else {
         		currentColor = new Color(128, 150, 150+(i*2));
         	}
+        	int boxWidth = width / i;
+        	int boxHeight = height * (i/notes.numNotes());
+        	int x = boxWidth + (boxWidth * i);
+        	
         	g.setColor(currentColor);
+        	g.fillRect(x, 0, boxWidth, boxHeight);
         }
         notes.clearAllHighlighted();
     }
