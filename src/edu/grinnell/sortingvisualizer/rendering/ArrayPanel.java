@@ -47,7 +47,7 @@ public class ArrayPanel extends JPanel {
         	heightFraction = height-1 / numNotes;
         	if (i != 0) { boxHeight = i * heightFraction; }
         	else { boxHeight = heightFraction; }
-        	int x = boxWidth + (boxWidth * i);
+        	int x = (boxWidth * i);
         	
         	g.setColor(currentColor);
         	g.fillRect(x, 0, boxWidth, boxHeight);
