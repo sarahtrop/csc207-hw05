@@ -2,6 +2,7 @@ package edu.grinnell.sortingvisualizer.rendering;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -101,6 +102,8 @@ public class ControlPanel extends JPanel {
         notes.initializeAndShuffle(scale.size());
         this.panel = panel;
         
+    	System.out.println(Arrays.toString(notes.getNotes()));
+
         ///// The sort selection combo box /////
         JComboBox<String> sorts = new JComboBox<>(new String[] {
            "Selection",
