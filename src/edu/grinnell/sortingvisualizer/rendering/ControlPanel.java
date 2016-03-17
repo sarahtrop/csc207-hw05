@@ -143,7 +143,8 @@ public class ControlPanel extends JPanel {
                 
                 // 1. Create the sorting events list
                 // 2. Add in the compare events to the end of the list
-                final List<SortEvent<Integer>> events = generateEvents((String) sorts.getSelectedItem(), notes.getNotes());
+                Integer[] copyNotes = Arrays.copyOf(notes.getNotes(), notes.numNotes());
+                final List<SortEvent<Integer>> events = generateEvents((String) sorts.getSelectedItem(), copyNotes);
                 // NOTE: The Timer class repetitively invokes a method at a
                 //       fixed interval.  Here we are specifying that method
                 //       by creating an _anonymous subclass_ of the TimeTask
@@ -158,16 +159,15 @@ public class ControlPanel extends JPanel {
                     public void run() {
                         if (index < events.size()) {
                             SortEvent<Integer> e = events.get(index++);
-                            // TODO: fill me in
                             // 1. Apply the next sort event.
                             e.apply(notes.getNotes());
                             // 3. Play the corresponding notes denoted by the
                             //    affected indices logged in the event.
-                            for (int i = 0; i < e.getAffectedIndices().size(); i++) {
+                            for (int i = 0; i < 2; i++) {
                             	scale.playNote(e.getAffectedIndices().get(i), e.isEmphasized());
                             }
                             // 4. Highlight those affected indices.
-                            for (int i = 0; i < e.getAffectedIndices().size(); i++) {
+                            for (int i = 0; i < 2; i++) {
                             	notes.highlightNote(e.getAffectedIndices().get(i));
                             }
                             panel.repaint();

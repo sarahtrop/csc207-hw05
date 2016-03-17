@@ -14,6 +14,8 @@ public class CopyEvent<T> implements SortEvent<T> {
 	}
 	
 	public void apply(T[] arr) {
+		if (sndIndex >= arr.length)
+			return;
 		arr[sndIndex] = arr[fstIndex];
 	}
 

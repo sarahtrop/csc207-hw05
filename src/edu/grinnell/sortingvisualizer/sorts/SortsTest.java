@@ -163,7 +163,7 @@ public class SortsTest {
 		
 		Sorts.eventSort(intArray1, insertionEvents);
 		Sorts.eventSort(doubleArray1, selectionEvents);
-		Sorts.eventSort(stringArray1, mergeEvents); // index out of bounds error
+		Sorts.eventSort(stringArray1, mergeEvents);
 		Sorts.eventSort(characterArray1, bubbleEvents);
 		Sorts.eventSort(intArray2_1, quickEvents);
 		Sorts.eventSort(doubleArray2_1, shellEvents);
