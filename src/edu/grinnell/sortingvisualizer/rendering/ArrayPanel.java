@@ -33,16 +33,18 @@ public class ArrayPanel extends JPanel {
     	Color currentColor;
         for (int i = 0; i < notes.numNotes(); i++) {
         	if (notes.isHighlighted(i)) {
-        		currentColor = new Color(255, 255, 0);
+        		currentColor = new Color(0, 10, 200);
         	} else {
-        		currentColor = new Color(0, 150, 150+(i*2));
+        		int blueComponent = 150 + (i*3);
+        		if (blueComponent > 255) { blueComponent = 255; }
+        		currentColor = new Color(20, 150, blueComponent);
         	}
-        	int boxWidth = width / notes.numNotes();
+        	double boxWidth = width / notes.numNotes();
         	int boxHeight = (notes.getNotes()[i] + 1) * (height / notes.numNotes());
-        	int x = (boxWidth * i);
+        	double x = (boxWidth * i);
         	
         	g.setColor(currentColor);
-        	g.fillRect(x, height - boxHeight, boxWidth, boxHeight);
+        	g.fillRect((int)x, height - boxHeight, (int)boxWidth, boxHeight);
         }
         notes.clearAllHighlighted();
     }

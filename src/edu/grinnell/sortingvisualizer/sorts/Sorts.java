@@ -97,13 +97,13 @@ public class Sorts {
 		int middle = mid;
 		Object[] newArray = new Object[hi-lo];
 		for(int n = 0; n < hi-lo; n++) {
+			events.add((SortEvent<T>) new CompareEvent<>(lowerBound, middle));
 			if(middle == hi || (arr[lowerBound].compareTo(arr[middle]) < 0 && lowerBound < mid)) {
-				events.add((SortEvent<T>) new CompareEvent<>(lowerBound, middle));
 				newArray[n] = arr[lowerBound];
 				lowerBound++;
 			} else {
 				newArray[n] = arr[middle];
-				events.add((SortEvent<T>) new CopyEvent<>(middle, n));
+				events.add((SortEvent<T>) new CopyEvent<>(newArray, n, middle));
 				middle++;
 			}
 		}
@@ -128,7 +128,6 @@ public class Sorts {
     	
         int mid = lo + (hi - lo) /2;
         T pivot = arr[mid];
-        
         if (lo >= hi) { return null; }
         
         int i = lo, j = hi;
@@ -180,7 +179,7 @@ public class Sorts {
 					arr[j] = arr[j-g];
 				}
 				arr[j] = temp;
-				events.add((SortEvent<T>) new CopyEvent<>(i, j));
+				events.add((SortEvent<T>) new CopyEvent<>(arr, i, j));
 			}
 		}
 		return events;

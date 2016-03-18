@@ -5,18 +5,18 @@ import java.util.List;
 
 public class CopyEvent<T> implements SortEvent<T> {
 
-	private int fstIndex; //copied
-	private int sndIndex; // copied into
+	private int fstIndex;
+	private int sndIndex;
+	private T[] copy;
 	
-	public CopyEvent(int index1, int index2) {
+	public CopyEvent(T[] newArr, int index1, int index2) {
 		fstIndex = index1;
 		sndIndex = index2;
+		copy = newArr;
 	}
 	
 	public void apply(T[] arr) {
-		if (sndIndex >= arr.length)
-			return;
-		arr[sndIndex] = arr[fstIndex];
+		copy[fstIndex] = arr[sndIndex];
 	}
 
 	public List<Integer> getAffectedIndices() {

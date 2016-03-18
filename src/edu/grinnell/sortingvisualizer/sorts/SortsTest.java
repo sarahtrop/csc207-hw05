@@ -170,10 +170,10 @@ public class SortsTest {
 		
 		assertEquals("Insertion: { 1, 6, 7, 4, 2, 10, 23 }", "[1, 2, 4, 6, 7, 10, 23]", Arrays.toString(intArray1));
 		assertEquals("Selection: { 100.0, -62.345, -8.97, 567.3, 2.1 }", "[-62.345, -8.97, 2.1, 100.0, 567.3]", Arrays.toString(doubleArray1));
-		assertEquals("Merge: { dog, zebra, lion, rabbit, turtle, banana, armadillo, hedgehog, puppy }", 
+		assertEquals("Merge: { dog, zebra, lion, rabbit, turtle, banana, armadillo, hedgehog, puppy }", // not working
 					"[armadillo, banana, dog, hedgehog, lion, puppy, rabbit, turtle, zebra]", Arrays.toString(stringArray1));
 		assertEquals("Bubble: { y, i, p, a, g, f, e, w, q }", "[a, e, f, g, i, p, q, w, y]", Arrays.toString(characterArray1));
-		assertEquals("Quick: { 10, 11, 87, 93, 2 }", "[2, 10, 11, 87, 93]", Arrays.toString(intArray2_1));
+		assertEquals("Quick: { 10, 11, 87, 93, 2 }", "[2, 10, 11, 87, 93]", Arrays.toString(intArray2_1)); // not working
 		assertEquals("Shell: { -7.0, 9.3, 4.5, 2.12, 98.4 }", "[-7.0, 2.12, 4.5, 9.3, 98.4]", Arrays.toString(doubleArray2_1));
 	}
 
